@@ -1706,3 +1706,16 @@ Policy: append-only; preserve all earlier entries.
 - **Blogger/Telegram:** NOT TESTED; no draft or delivery performed.
 - **Safety:** No secrets accessed, no default-branch direct writes, no deletes, force pushes, production deployment, live publishing or automatic enrollment.
 - **Marker:** trtt-dr-dk-integration-batches-merged-20261128
+
+
+## 2026-11-28 — DR-DK Central Command Router build trigger
+- **Timestamp:** 2026-11-28, Europe/Rome (exact minute not captured).
+- **Project code:** DR-TRTT-OPS-001.
+- **Trigger summary:** Owner asked whether all repositories could be operated under DR-DK SOVEREIGN AI OS, then instructed: “করো বস DR-DK SOVEREIGN AI OS.”
+- **Decision:** Build the next scoped stage: a central policy router in the Sovereign OS repository. Keep the system federated; do not claim universal repository control. The router v1 accepts only exact registry repository names and the safe tasks `inspect` and `dry_run`.
+- **Implementation scope:** Add a Python policy validator, negative/positive unit tests, a read-only GitHub Actions workflow, and router documentation. The validator checks the global safety gates, exact single registry match, and per-repository allowed_operations. It emits DRY_RUN_ONLY and explicitly reports that no target access or write occurred.
+- **Safety boundary:** No cross-repository API calls or workflow dispatch, no target repository access, no writes, no secrets, no AI/provider calls, no deletes, no force push, no live publication, no Telegram, no production deployment. Runtime remains disabled; successful policy validation is not enrollment or remote inspection.
+- **Memory files:** Append this trigger to the memory log and mirror the trace in trttmagic.html on a feature branch.
+- **Verification:** Repository metadata and existing registry/batches/architecture/roadmap fetched. Router files committed to feature branch; PR/CI and workflow runtime verification pending.
+- **GitLab/Blogger/Telegram:** NOT TESTED; no mirror, draft, publication or delivery action performed.
+- **Marker:** trtt-dr-dk-central-command-router-build-20261128
