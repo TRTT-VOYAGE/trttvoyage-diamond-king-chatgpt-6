@@ -1610,3 +1610,15 @@ Policy: append-only; preserve all earlier entries.
 - **Not established:** Neither inspected repository proves the complete TRTT target system (central multi-repo dispatcher + AI fact-check + Blogger draft + Telegram post + verified backup). No code copied and no third-party repo modified.
 - **Verification:** Public README/profile inspection PASS. Runtime execution, security audit, license compatibility beyond visible README references, cost/quota validation and integration tests NOT TESTED.
 - **Marker:** trtt-automation-benchmark-research-findings-20261128
+
+## Trigger Memory — GitHub Central Command Center Build — 2026-11-28
+
+- **Project:** DR-TRTT-OPS-001.
+- **Trigger summary:** Owner confirmed they are unwell and asked DIAMOND KING to lead the GitHub-first build of the central automation system; GitHub is the first and only active stage.
+- **Operating decision:** DIAMOND KING acts as execution lead for scoped engineering work; Owner remains project owner. Reduce manual steps. Use feature branches and PRs, preserve append-only history, and do not request routine manual merges when delegated merge conditions are met.
+- **Build scope:** Implement the first GitHub Actions central dispatcher as a manual, dry-run-only pilot. It must validate a selected repository ID against the explicit registry allowlist, reject unknown/unenrolled repositories, verify safety flags, and produce a run summary. No cross-repository dispatch, repository writes, deletes, secret access, AI calls, GitLab, Blogger, Telegram or production deployment in this phase.
+- **Repository state inspected:** PR #130 merged (merge SHA d6059bf0214add661bdc89ffcdcdc5d06c35f5ff); PR #131 merged; PR #132 merged. Current registry contains two pilot candidates and runtime_enabled=false. Existing workflow directory contains CodeQL only.
+- **Implementation:** Add `.github/workflows/trtt-central-dispatcher.yml` with workflow_dispatch inputs for repository ID and safe task, read-only permissions, registry validation and dry-run summary. Append this trigger to both memory files.
+- **Safety:** No direct default-branch writes; no delete/overwrite/force-push; no secrets or external integrations; dry-run only. No account or security settings changed.
+- **Verification:** Pending PR creation, workflow syntax/read-back and dry-run execution. Runtime dispatch is NOT TESTED until a workflow run completes.
+- **Marker:** trtt-central-dispatcher-dry-run-v1-20261128

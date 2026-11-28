@@ -1,0 +1,87 @@
+name: TRTT Central Dispatcher (Dry Run)
+
+on:
+  workflow_dispatch:
+    inputs:
+      repository_id:
+        description: Explicit repository ID from automation/repository-registry.json
+        required: true
+        type: choice
+        options:
+          - command-center
+          - profile-hub
+      task:
+        description: Read-only pilot task
+        required: true
+        type: choice
+        options:
+          - inspect
+          - dry_run
+
+permissions:
+  contents: read
+
+concurrency:
+  group: trtt-central-dispatcher-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate-and-plan:
+    name: Validate allowlist and produce dry-run plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout Command Center policy
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Validate selected repository and safety policy
+        env:
+          SELECTED_REPOSITORY_ID: ${{ inputs.repository_id }}
+          SELECTED_TASK: ${{ inputs.task }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import sys
+          from pathlib import Path
+
+          registry_path = Path("automation/repository-registry.json")
+          registry = json.loads(registry_path.read_text(encoding="utf-8"))
+          selected_id = os.environ["SELECTED_REPOSITORY_ID"]
+          selected_task = os.environ["SELECTED_TASK"]
+
+          if selected_task not in {"inspect", "dry_run"}:
+              sys.exit("Rejected: task is outside the read-only pilot scope.")
+          if registry.get("delete_operations_enabled") is not False:
+              sys.exit("Rejected: delete operations must remain disabled.")
+          if registry.get("default_branch_writes_allowed") is not False:
+              sys.exit("Rejected: direct default-branch writes must remain disabled.")
+          if registry.get("automatic_overwrite_allowed") is not False:
+              sys.exit("Rejected: automatic overwrite must remain disabled.")
+
+          matches = [r for r in registry.get("repositories", []) if r.get("id") == selected_id]
+          if len(matches) != 1:
+              sys.exit("Rejected: repository ID is unknown or duplicated in the allowlist.")
+          target = matches[0]
+          if target.get("enrolled") is not True:
+              sys.exit("Rejected: repository is not explicitly enrolled.")
+          if target.get("runtime_enabled") is not False:
+              sys.exit("Rejected: this first-stage dispatcher is dry-run-only; runtime must remain disabled.")
+
+          summary = [
+              "## TRTT Central Dispatcher — Dry Run",
+              "",
+              f"- Project: {registry['project_code']}",
+              f"- Selected repository: `{target['repository']}` ({selected_id})",
+              f"- Task: `{selected_task}`",
+              "- Result: PASS — allowlist and safety policy validated",
+              "- Execution mode: DRY RUN ONLY",
+              "- Repository writes: NOT PERFORMED",
+              "- Cross-repository dispatch: NOT PERFORMED",
+              "- Secrets / AI provider / publishing integrations: NOT ACCESSED",
+          ]
+          Path(os.environ["GITHUB_STEP_SUMMARY"]).write_text("\n".join(summary) + "\n", encoding="utf-8")
+          print("PASS: selected repository is explicitly allowlisted; dry-run only.")
+          PY
