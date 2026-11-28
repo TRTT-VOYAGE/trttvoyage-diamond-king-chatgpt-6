@@ -1693,3 +1693,16 @@ Policy: append-only; preserve all earlier entries.
 - **Planned files:** Append this trigger to the Command Center memory log and HTML mirror through a feature branch/PR. The next OS change will reconcile inventory metadata and introduce explicit first-party integration tiers only where evidence supports classification.
 - **Verification:** Repository metadata and existing OS registry fetched successfully. Runtime-wide integration, full inventory completeness, GitLab mirroring, Blogger, and Telegram are NOT TESTED.
 - **Marker:** trtt-dr-dk-repository-consolidation-trigger-20261128-1821
+
+
+## 2026-11-28 — DR-DK integration batches merged
+- **Project:** DR-TRTT-OPS-001
+- **Trigger:** Autonomous continuation of the owner's request to unify TRTT repositories under DR-DK SOVEREIGN AI OS.
+- **Memory PR:** Command Center PR #141 was re-fetched, mergeability verified, squash-merged and re-fetched closed/merged. Merge SHA: 14dbd2e2a88b7bb45d24891f62aab4b147e59ba3. Memory marker verified in both main files.
+- **OS build:** DR-DK-SOVEREIGN-AI-OS PR #2 added a governed integration roadmap, machine-readable integration batches and 14 provisional candidate classifications. PR #2 was re-fetched; mergeable true; no workflow runs or combined status checks were returned for the docs/registry-only commit. It was squash-merged and re-fetched closed/merged. Merge SHA: 5dbd06b29932b9113cd9f7a46f4b952d7b75b6d3.
+- **Read-back:** 190 registry records; inventory_complete remains false. Three batches contain 3 core/control-plane candidates, 6 operational-project review items and 5 creative/learning review items. Runtime remains disabled; no repo was enrolled or executed.
+- **Inventory caveat:** Organization search returned 190; connected owner listing returned 100 on page one and zero on page two. Counts are unreconciled; no complete inventory claim.
+- **GitLab:** Searches for the two exact repository names returned [] and [] respectively (see tool evidence); mirror not verified.
+- **Blogger/Telegram:** NOT TESTED; no draft or delivery performed.
+- **Safety:** No secrets accessed, no default-branch direct writes, no deletes, force pushes, production deployment, live publishing or automatic enrollment.
+- **Marker:** trtt-dr-dk-integration-batches-merged-20261128
