@@ -1673,3 +1673,12 @@ Policy: append-only; preserve all earlier entries.
 - **Build plan:** Add the 190-result discovery registry and multi-repository integration architecture to DR-DK-SOVEREIGN-AI-OS via a feature branch and PR. Extend Command Center memory and HTML mirror append-only via a separate feature branch and PR.
 - **Verification:** Inventory search PASS for 190 results; OS repository and README read-back PASS; runtime integration NOT TESTED. GitLab, Blogger and Telegram NOT TESTED.
 - **Marker:** trtt-dr-dk-multi-repository-unification-20261128
+
+## 2026-11-28 — DR-DK SOVEREIGN AI OS identity declaration
+- **Project:** DR-TRTT-OPS-001
+- **Trigger:** Owner declared: “DR-DK SOVEREIGN AI OS — I am not a user. I am the OS! TRTT VOYAGE — Diamond King | Abu Taher.”
+- **Decision:** Record this as the owner's preferred project identity and operating principle: the owner identifies with the sovereign OS rather than as an ordinary end user. Preserve the Diamond Raja / Abu Taher and Diamond King identities within the TRTT Voyage project context.
+- **Authority boundary:** This declaration does not change repository permissions, enrollment, execution scope, security gates, or owner approval requirements. The OS remains a governed system; no claim is made that runtime-wide autonomous integration is already implemented.
+- **File changes:** Append this entry to the memory log and mirror a concise trace in trttmagic.html on a feature branch; open a PR for review.
+- **Verification:** Pending PR, CI and read-back verification.
+- **Marker:** trtt-dr-dk-os-identity-declaration-20261128
