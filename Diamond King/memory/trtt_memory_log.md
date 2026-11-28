@@ -1622,3 +1622,13 @@ Policy: append-only; preserve all earlier entries.
 - **Safety:** No direct default-branch writes; no delete/overwrite/force-push; no secrets or external integrations; dry-run only. No account or security settings changed.
 - **Verification:** Pending PR creation, workflow syntax/read-back and dry-run execution. Runtime dispatch is NOT TESTED until a workflow run completes.
 - **Marker:** trtt-central-dispatcher-dry-run-v1-20261128
+
+## Trigger Memory — Newspaper Bot Fork Confirmed — 2026-11-28
+
+- **Project:** DR-TRTT-OPS-001.
+- **Trigger summary:** Owner confirmed they forked `MS-Jahan/newspaper-bot-tg`.
+- **Repository discovery:** GitHub repository search found the owner fork at https://github.com/TRTT-VOYAGE/newspaper-bot-tg. Repository ID `1475777131`, default branch `main`, public, connected account has admin/push access.
+- **Read-back:** Fork README and `.github/workflows/main.yml` fetched from `main`. README still identifies original upstream project; workflow still contains full `toJson(secrets)` export pattern and does not declare explicit least-privilege workflow permissions.
+- **Decision:** Treat `TRTT-VOYAGE/newspaper-bot-tg` as the working fork for future review. Do not execute it, add it to runtime allowlist, alter secrets, schedule workflows, publish to Telegram, or change upstream. First remediation task must inspect workflow permissions, secret exposure, dependency pinning, source attribution/licensing and duplicate-post protections. Keep it isolated until review is complete.
+- **Verification:** Fork existence and accessible default-branch files PASS. Fork parent metadata / upstream sync state NOT VERIFIED. Runtime, security remediation, tests and Telegram delivery NOT TESTED.
+- **Marker:** trtt-newspaper-bot-fork-confirmed-20261128
