@@ -1622,3 +1622,17 @@ Policy: append-only; preserve all earlier entries.
 - **Safety:** No direct default-branch writes; no delete/overwrite/force-push; no secrets or external integrations; dry-run only. No account or security settings changed.
 - **Verification:** Pending PR creation, workflow syntax/read-back and dry-run execution. Runtime dispatch is NOT TESTED until a workflow run completes.
 - **Marker:** trtt-central-dispatcher-dry-run-v1-20261128
+
+## Trigger Memory — Newspaper Bot TG Repository Review — 2026-11-28
+
+- **Project:** DR-TRTT-OPS-001.
+- **Trigger summary:** Owner shared https://github.com/MS-Jahan/newspaper-bot-tg for review as a possible reference for TRTT's GitHub-first automated content system.
+- **Repository inspection:** Public repository `MS-Jahan/newspaper-bot-tg`, default branch `main`; connected GitHub account has pull-only access. README, project structure, `N8N_CONVERSION_PLAN.md`, GitHub Actions workflows, `main.py`, dependency list and Cloudflare Worker README inspected.
+- **Findings:** Python scrapers cover Prothom Alo, BBC Bangla, Kaler Kantho, Ridmik and National University notices; Telegram delivery and Telegraph formatting are used. GitHub Actions provide manual execution; Cloudflare Worker documentation describes 30-minute scheduling. The n8n conversion plan is planning documentation, not proof of a deployed n8n migration.
+- **Architecture decision:** Retain as a benchmark for multi-source ingestion, isolated scraper workers, URL-based duplicate tracking, Telegraph formatting, scheduled Actions and operational notifications. Do not copy code or add this external repository to the TRTT runtime allowlist in this review.
+- **Security observations:** The inspected workflow serializes the full `secrets` context and writes values into `GITHUB_ENV`; workflow-level permissions are not explicitly restricted. This is not an acceptable pattern for TRTT. The Cloudflare Worker setup documentation requests a broad GitHub PAT with `repo` and `workflow` scopes; do not adopt this credential model. No secret values were accessed.
+- **Limitations:** No runtime execution, independent security audit, dependency/license audit, source scraping validation, live Telegram delivery test, Cloudflare account/quota verification or n8n deployment verification performed.
+- **TRTT build status:** PR #133 central dispatcher dry-run pilot re-fetched at head `79bf277ba204943fef3ccdf00e1ccf5cc6d1c5dd`; CodeQL run `46165278488` completed successfully; PR remained open and mergeable. It was safely squash-merged as commit `f2f68ea1aa22bf4d8a1c7ead0c53e37d9d10f303`; GitHub confirmed `merged=true` and closed state.
+- **File changes:** Append this entry to `Diamond King/memory/trtt_memory_log.md` and mirror a concise marker in `Diamond King/trttmagic.html` on a feature branch and PR. No changes made to the external benchmark repository.
+- **Verification:** GitHub repository metadata and selected files inspected; PR #133 merge PASS. Dispatcher workflow runtime remains NOT TESTED. GitLab, Blogger and Telegram stages NOT TESTED.
+- **Marker:** trtt-newspaper-bot-tg-benchmark-review-20261128

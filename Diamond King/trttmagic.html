@@ -840,3 +840,8 @@ Public GitHub README/profile inspection: MS-Jahan/newspaper-bot-tg documents Pyt
 <!-- DR-TRTT-OPS-001 | 2026-11-28 | trtt-central-dispatcher-dry-run-v1-20261128
 Owner confirmed GitHub-first build and delegated execution leadership to DIAMOND KING while unwell. First implementation is a manual dry-run-only GitHub Actions dispatcher. It validates explicit registry allowlist, enrolled repository, safe task, and no-delete/no-default-branch-write/no-overwrite invariants. No repository write, cross-repo dispatch, secrets, AI, GitLab, Blogger, Telegram or production action. Workflow run verification pending.
 -->
+
+
+<!-- DR-TRTT-OPS-001 | 2026-11-28 | trtt-newspaper-bot-tg-benchmark-review-20261128
+Reviewed public MS-Jahan/newspaper-bot-tg as an architecture benchmark: Python multi-source news/notice scrapers, GitHub Actions, Telegram, Telegraph formatting, URL tracking and documented Cloudflare Worker scheduling. Not a complete TRTT system; n8n document is a conversion plan, not deployed proof. Security concern: workflow exports the full secrets context to GITHUB_ENV and has no explicit least-privilege permissions; documented Cloudflare setup asks for broad repo/workflow PAT. No code copied, no external repo changed, no secrets accessed. Runtime, security, license, quota and delivery tests NOT TESTED. In parallel, Command Center PR #133 passed CodeQL run 46165278488 and was squash-merged at f2f68ea1aa22bf4d8a1c7ead0c53e37d9d10f303; dispatcher runtime remains NOT TESTED.
+-->
