@@ -1682,3 +1682,14 @@ Policy: append-only; preserve all earlier entries.
 - **File changes:** Append this entry to the memory log and mirror a concise trace in trttmagic.html on a feature branch; open a PR for review.
 - **Verification:** Pending PR, CI and read-back verification.
 - **Marker:** trtt-dr-dk-os-identity-declaration-20261128
+
+
+## 2026-11-28 18:21 CET — DR-DK repository consolidation trigger
+- **Project:** DR-TRTT-OPS-001
+- **Trigger:** Owner asked Diamond King to unify all repositories under DR-DK SOVEREIGN AI OS and use independent judgment.
+- **Decision:** Continue with a governed federated control plane, not a monorepo or bulk repository migration. Keep each repository's history and default branch independent. Build a verified first-party inventory, classify repositories by ownership/origin/risk/function, then enroll reviewed repositories in staged read-only, dry-run, and narrowly scoped PR workflows.
+- **Current evidence:** DR-DK-SOVEREIGN-AI-OS and Command Center are accessible with admin/maintain/push permissions. OS registry currently contains 190 discovery records marked incomplete; connected owner listing currently returned 100 records in its first page. These are different discovery views and must be reconciled before claiming a complete inventory.
+- **Safety:** No bulk writes, secrets access, direct default-branch writes, deletes, force pushes, production deployment, live publishing, or automatic repo enrollment. Forks and third-party mirrors remain isolated pending upstream, license, security, and ownership review.
+- **Planned files:** Append this trigger to the Command Center memory log and HTML mirror through a feature branch/PR. The next OS change will reconcile inventory metadata and introduce explicit first-party integration tiers only where evidence supports classification.
+- **Verification:** Repository metadata and existing OS registry fetched successfully. Runtime-wide integration, full inventory completeness, GitLab mirroring, Blogger, and Telegram are NOT TESTED.
+- **Marker:** trtt-dr-dk-repository-consolidation-trigger-20261128-1821
